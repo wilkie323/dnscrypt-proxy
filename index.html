@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>DNSCrypt - Official Project Home Page</title>
     <meta name="description" content="Home of the DNSCrypt project, a protocol to improve DNS security. Download DNSCrypt clients, the DNSCrypt server proxy, and read the specifications here.">
@@ -9,83 +10,341 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name"><img alt="DNSCrypt" src="dnscrypt.png"/></h1>
-      <h2 class="project-tagline">A protocol to improve DNS security</h2>
-      <a href="#dnscrypt-windows" class="btn">DNSCrypt clients for Windows</a>
-      <a href="#dnscrypt-osx" class="btn">DNSCrypt clients for OSX</a>
-      <a href="#dnscrypt-proxy" class="btn">DNSCrypt clients for Unix</a>
-      <br/>
-      <a href="#dnscrypt-android" class="btn">DNSCrypt for Android</a>
-      <a href="#dnscrypt-ios" class="btn">DNSCrypt for iOS</a>
-      <a href="#dnscrypt-routers" class="btn">DNSCrypt for routers</a>
-      <br/>
-      <a href="#dnscrypt-server" class="btn">DNSCrypt server source code</a>
-      <a href="https://download.dnscrypt.org/dnscrypt-proxy/" class="btn" target="_blank" rel="noopener">DNSCrypt client source code</a>
-      <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/DNSCRYPT-V2-PROTOCOL.txt" class="btn" target="_blank" rel="noopener">Protocol specification</a>
-      <a href="https://github.com/jedisct1/dnscrypt-proxy/issues" class="btn" target="_blank" rel="noopener">Support</a>
-      <br/>
-      Current stable DNSCrypt client version: <strong>1.8.1</strong>
-      <br/>
-      Current stable DNSCrypt server version: <strong>0.2.1</strong>
+</head>
+
+<body>
+    <header class="nav">
+        <nav>
+            <a href="#about" class="btn">About</a>
+            <a href="#install-dnscrypt" class="btn">Install DNSCrypt</a>
+            <a href="#dnscrypt-control" class="btn">Control your DNS traffic</a>
+            <a href="#dnscrypt-server" class="btn">Run your own server</a>
+        </nav>
+    </header>
+    <section id="about" class="page-header">
+        <h1 class="project-name"><img alt="DNSCrypt" src="dnscrypt.png" /></h1>
+        <h2 class="project-tagline">A protocol to improve DNS security</h2>
+        <a href="#dnscrypt-windows" class="btn">DNSCrypt clients for Windows</a>
+        <a href="#dnscrypt-macos" class="btn">DNSCrypt clients for MacOS</a>
+        <a href="#dnscrypt-proxy" class="btn">DNSCrypt clients for Unix</a>
+        <br/>
+        <a href="#dnscrypt-android" class="btn">DNSCrypt for Android</a>
+        <a href="#dnscrypt-ios" class="btn">DNSCrypt for iOS</a>
+        <a href="#dnscrypt-routers" class="btn">DNSCrypt for routers</a>
+        <br/>
+        <a href="#dnscrypt-server" class="btn">DNSCrypt server source code</a>
+        <a href="https://download.dnscrypt.org/dnscrypt-proxy/" class="btn" target="_blank" rel="noopener">DNSCrypt client source code</a>
+        <a href="https://github.com/jedisct1/dnscrypt-proxy/issues" class="btn" target="_blank" rel="noopener">Support</a>
+        <br/> Current stable DNSCrypt client version: <strong>1.8.1</strong>
+        <br/> Current stable DNSCrypt server version: <strong>0.2.1</strong>
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="dnscrypt" class="anchor" href="#dnscrypt" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt</h1>
+        <section id="blurb" class="anchor">
+            <h1>DNSCrypt</h1>
 
-<p>DNSCrypt is a protocol that authenticates communications between a DNS client and a DNS resolver. It prevents DNS spoofing.
-It uses cryptographic signatures to verify that responses originate from the chosen DNS resolver and haven't been tampered with.
-</p>
+            <p>DNSCrypt is a protocol that authenticates communications between a DNS client and a DNS resolver. It prevents
+                DNS spoofing. It uses cryptographic signatures to verify that responses originate from the chosen DNS resolver
+                and haven't been tampered with.
+            </p>
 
-<p>Implementations are available for most operating systems, including Linux, OSX, Android, iOS, BSD and Windows.</p>
+            <p>It is an open specification, with free and opensource reference implementations, and it is not affiliated with
+                any company nor organization.</p>
 
-<p>DNSCrypt is not affiliated with any company or organization, is a documented protocol using highly secure, non-NIST cryptography, and its reference implementations are open source and released under a very liberal license.</p>
+            <h2>Free, DNSCrypt-enabled resolvers are available all over the world</h2>
 
-<p>Please note that DNSCrypt is not a replacement for a VPN, as it only authenticates DNS traffic, and doesn't prevent "DNS leaks", or third-party DNS resolvers from logging your activity. The TLS protocol, as used in HTTPS and HTTP2, also leaks leaks websites host names in plain text, rendering DNSCrypt useless as a way to hide this information.</p>
+            <p>
+                A couple companies, organizations and individuals are operating public recursive DNS servers supporting the DNSCrypt protocol,
+                so that all you need to run is a client.
+            </p>
 
-<h2>
-<a id="public-resolvers" class="anchor" href="#public-resolvers" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt-compatible public resolvers</h2>
+            <p>
+                A constantly updated <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv">list of open DNSCrypt resolvers</a>                can be downloaded to replace the default CSV file shipped with the <a href="#dnscrypt-proxy">dnscrypt-proxy</a>                client.
+            </p>
 
-<p>
-A couple companies, organizations and individuals are operating public recursive DNS servers supporting the DNSCrypt protocol, so that all you need to run is the client.
-</p>
+            <p>
+                If you are running your own public DNS resolver in order to help make the Internet a more secure place, please submit a
+                <a href="https://github.com/jedisct1/dnscrypt-proxy/pulls">pull request</a> to have your resolver added to
+                the <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv">list of public DNS resolvers</a>.
+            </p>
 
-<p>
-A constantly updated <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv">list of open DNSCrypt resolvers</a> can be downloaded to replace the default CSV file shipped with the dnscrypt-proxy client.
-</p>
+        </section>
+        <section id="install-dnscrypt" class="anchor">
+            <h1>Installing a DNSCrypt client</h1>
 
-<p>
-If you are running your own public DNS resolver in order to help make the Internet a more secure place, please submit a <a href="https://github.com/jedisct1/dnscrypt-proxy/pulls">pull request</a> to have your resolver added to the <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv">list of public DNS resolvers</a>.
-</p>
+            <p>
+                DNSCrypt itself is not a product, but a protocol that anyone can implement. Portable implementations are also available,
+                on top on which graphical user interfaces and convenient tools have been built.
+            </p>
 
-<h2>
-<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment</h2>
+            <p>
+                Choose your platform to discover some of the available options: <a href="#dnscrypt-windows">Windows</a> -
+                <a href="#dnscrypt-macos">MacOS</a> - <a href="#dnscrypt-proxy">Linux / BSD</a> - <a href="#dnscrypt-android">Android</a>                - <a href="#dnscrypt-ios">iOS</a> or run the software on a <a href="#dnscrypt-routers">router</a>.
+            </p>
 
-<p>DNSCrypt is typically deployed using a pair of DNS proxies: a client proxy and a server proxy.
-</p>
+            <p>
+                Firewall setup: although some resolvers may prefer a different port, the default port used by the DNSCrypt protocol is 443.
+                Outgoing queries to this port on both TCP and UDP should be allowed by your firewall.
+            </p>
 
-<p>
-The client side of DNSCrypt is a proxy to which regular DNS clients can connect to. Instead of using your ISP's DNS settings, you can just configure your network settings to use <code>127.0.0.1</code> or whatever IP address and port you configured the DNSCrypt client to listen to.
-The client proxy translates regular DNS queries into authenticated DNS queries, forwards them to a server running the server DNSCrypt proxy, verifies the responses, and forwards them to the client if they appear to be genuine.
-</p>
+            <section id="dnscrypt-windows" class="anchor">
+                <h2>DNSCrypt for Windows</h2>
 
-<p>
-The server side of DNSCrypt receives DNS queries sent by the client proxy, forwards them to a trusted DNS resolver, and signs the responses it receives before forwarding them to the client proxy.
-</p>
+                <ul>
+                    <li>
+                        <a href="https://simplednscrypt.org/" target="_blank">Simple DNSCrypt</a> is an an all-in-one, easy-to-use,
+                        standalone client.
+                    </li>
+                    <li><a href="https://github.com/Noxwizard/dnscrypt-winclient" target="_blank">DNSCrypt WinClient</a> is the
+                        original DNSCrypt user interface for Windows.</li>
+                    <li><a href="#dnscrypt-proxy">dnscrypt-proxy</a> is the reference client implementation and works natively
+                        on Windows, from Windows XP to Windows 10. It runs as a service, and does not provide a graphical
+                        user interface; its installation and its configuration require typing commands. This remains an excellent
+                        option for advanced users.
+                    </li>
+                </ul>
 
-<p>
-The DNSCrypt protocol uses UDP and TCP ports 443, which are less likely to be filtered by routers and ISPs than the standard DNS port.
-</p>
+                <p>
+                    <strong>Important:</strong> We are aware of fake packages pretending to be DNSCrypt Windows clients,
+                    that actually contain malware/PUP. Do not download anything that pretends to be a DNSCrypt client from
+                    torrents, links in Youtube videos or unofficial download locations.
+                </p>
+            </section>
 
-<p>
-The local network is usually the most vulnerable network segment against active attacks such as DNS spoofing.
-The DNSCrypt server can run on the router, along with a modern DNS resolver. Clients can then run the client code of DNSCrypt, leveraging the router DNS resolver.
-</p>
+            <section id="dnscrypt-macos" class="anchor">
+                <h2>DNSCrypt for macOS</h2>
 
-<pre>
+                <ul>
+                    <li>
+                        <a href="https://github.com/alterstep/dnscrypt-osxclient" target="_blank">DNSCrypt-OSXClient</a>                        is an easy-to-use, full-featured, self-contained graphical user interface for macOS.
+                    </li>
+                    <li>
+                        <a href="#dnscrypt-proxy">dnscrypt-proxy</a> is the reference client implementation and works natively
+                        on recent MacOS versions. Users familiar with the command-line can use <a href="http://brew.sh/">Homebrew</a>                        to install the software.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="dnscrypt-yandex" class="anchor">
+                <h2>DNSCrypt in the Yandex web browser</h2>
+                <p>The <a href="https://browser.yandex.com/desktop/" target="_blank" rel="noopener">Yandex web browser</a> is
+                    a free, fast and secure web browser.</p>
+                <p>It scans files and website for viruses, blocks fraudulent webpages, protects your passwords and bank card
+                    details, and keeps your online payments safe from theft.
+                </p>
+                <p>The Yandex web browser also features <a href="https://yandex.com/support/browser/security/dnscrypt.xml" target="_blank"
+                        rel="noopener">built-in support for the DNSCrypt protocol</a>.</p>
+            </section>
+
+            <section id="dnscrypt-android" class="anchor">
+                <h2>DNSCrypt for Android</h2>
+                <p>
+                    Running DNSCrypt on Android currently requires a rooted device. If you don't know how to root an Android device, the
+                    <a href="http://forum.xda-developers.com/" target="_blank" rel="noopener">xda-developers</a> forum is
+                    a good place to start.
+                </p>
+                <ul>
+                    <li>Start by downloading a precompiled <a href="https://download.dnscrypt.org/dnscrypt-proxy/" target="_blank"
+                            rel="noopener">dnscrypt-proxy package for Android</a>.</li>
+                    <li>If you want to change the DNSCrypt resolver to use, unzip the archive, edit the <code>RESOLVER_NAME</code>                        variable in <code>system/etc/init.d/99dnscrypt</code>. Keep the content as a ZIP file, with the original
+                        structure.
+                    </li>
+                    <li>Upload the ZIP file to the device, into <code>/sdcard</code> or any location you can write to.</li>
+                    <li>Make sure that you have a custom recovery such as TWRP or CWM. The easiest way is to download and install
+                        <strong>TWRP Manager</strong> from the Google Play Store. Reboot in recovery mode and install the
+                        ZIP file.
+                    </li>
+                    <li>Reboot.</li>
+                    <li>Dowload and install <strong>Universal Init.d</strong> from the Google Play Store. Follow the instructions
+                        until you see <code>Your Kernel Has init.d Support</code>.</li>
+                    <li>The DNSCrypt proxy should be running at this point, but your device may still use the previous DNS settings.
+                        Download and install <strong>DNS Changer</strong> fron the Google Play Store. In order to actually
+                        use DNSCrypt, enter <code>127.0.0.1</code> as the primary DNS resolver. In order to stop using DNSCrypt,
+                        leave this field empty.
+                    </li>
+                    <li>DNS changes may not be visible immediately. Android has its own DNS cache, and web browsers such as Chrome
+                        have another layer of DNS caching. In order to clear Chrome's DNS cache, enter <code>chrome://net-internals/#dns</code>                        in the URL bar, and press <strong>Clear host cache</strong>.
+                </ul>
+                Relevant discussions:
+                <ul>
+                    <li><a href="https://github.com/jedisct1/dnscrypt-proxy/issues/98#issuecomment-62636551" target="_blank"
+                            rel="noopener">Starting the daemon on Android</a></li>
+                    <li><a href="http://forum.xda-developers.com/showthread.php?t=2793092" target="_blank" rel="noopener">How to install DNSCrypt on Android</a>
+                </ul>
+                </p>
+                <p>
+                    The dnscrypt-proxy source code can be cross-compiled for Android using the provided <code>dist-build/android*.sh</code>                    scripts.</a>
+                </p>
+                <p>
+                    It might also soon be part of the <a href="https://review.cyanogenmod.org/#/q/status:open+branch:cm-12.1+topic:dnscrypt"
+                        target="_blank" rel="noopener">Cyanogen Mod</a>.
+                </p>
+            </section>
+
+            <section id="dnscrypt-ios" class="anchor">
+                <h2>DNSCrypt for iOS</h2>
+                <p>
+                    For jailbroken iOS device, <a href="https://modmyi.com/cydia/com.guizmo.dns">GuizmoDNS</a> is an app
+                    to change DNS settings (for 3G/4G and Wifi), with support for DNSCrypt. It is available on Cydia. The
+                    command-line <code>dnscrypt-proxy</code> client is also available on Cydia.
+                </p>
+                <p>
+                    However, the version on Cydia might not be the latest one. Official pre-compiled binaries of the latest version are available
+                    on the <a href="https://download.dnscrypt.org/dnscrypt-proxy/" target="_blank" rel="noopener">DNSCrypt download</a>                    page.
+                </p>
+                <p>
+                    The DNSCrypt source code can also be compiled out of the box for iOS devices, using the provided <code>dist-build/ios.sh</code>                    script.
+                </p>
+                <p>
+                    With the introduction of the Network Extension Framework in iOS 9, it may be possible to write a DNSCrypt client app that
+                    would run everywhere, without requiring a jailbroken device. Plese get in touch with us if you want to
+                    sponsor this effort.
+                </p>
+            </section>
+
+            <section id="dnscrypt-routers" class="anchor">
+                <h2>DNSCrypt for routers</h2>
+                <p>
+                    Modern open router firmwares such as <a href="http://tomato.groov.pl/" target="_blank" rel="noopener">Tomato Shibby</a>                    and other Tomato variants include a DNSCrypt client out-of-the box.
+                </p>
+                <p>
+                    The dnscrypt-proxy client is also available on OpenWRT which has a wiki page on using <a href="https://wiki.openwrt.org/inbox/dnscrypt"
+                        target="_blank" rel="noopener">DNSCrypt on OpenWRT</a>.
+                </p>
+                <p>
+                    <a href="#dnscrypt-proxy">dnscrypt-proxy</a> can also be found in <a href="https://github.com/Entware/entware"
+                        target="_blank" rel="noopener">Entware</a>.
+                </p>
+                <p>
+                    It can also be compiled for any Linux-based target, running an Intel, Mips or ARM CPU.
+                </p>
+            </section>
+
+            <section id="dnscrypt-proxy" class="anchor">
+                <h2>dnscrypt-proxy</h2>
+
+                <p>
+                    The most popular client DNSCrypt implementation is <a href="https://github.com/jedisct1/dnscrypt-proxy/wiki"
+                        target="_blank" rel="noopener">dnscrypt-proxy</a>. It can be used on its own, or through one of the graphical
+                    user interfaces listed above.
+                </p>
+
+                <p>
+                    dnscrypt-proxy implements the latest revision of the protocol and works on many platforms, including Windows, MacOS, Linux,
+                    OpenBSD, FreeBSD, NetBSD, Android and iOS. It can be extended with plugins.
+                </p>
+
+                <p>
+                    For more information on dnscrypt-proxy, please refer to the dedicated <a href="https://github.com/jedisct1/dnscrypt-proxy/wiki"
+                        target="_blank" rel="noopener">wiki</a>.
+                </p>
+
+                <section>
+                    <h3>Alternative clients, installation scripts and GUIs for Unix</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/gortcodex/dnscrypt-loader" target="_blank" rel="noopener">DNSCrypt-Loader</a>                            is a console-based tool to manage the DNSCrypt proxy client on Linux. It requires a minimal amount
+                            of dependencies, has an always up-to-date list of resolvers, and can automatically change the
+                            DNS settings to use DNSCrypt.</li>
+                        <li><a href="https://github.com/chengr28/Pcap_DNSProxy" target="_blank" rel="noopener">Pcap_DNSProxy</a>                            is a very fast DNS proxy. It includes a DNSCrypt client implementation.
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="dnscrypt-control" class="anchor">
+                <h2>Take control of your DNS traffic</h2>
+
+                <p>
+                    Aside from implementing the protocol, common DNSCrypt clients give a lot of control on the DNS traffic.
+                </p>
+
+                <p>
+                    Use dnscrypt-proxy, Simple DNSCrypt, and OSXClient to:
+                    <ul>
+                        <li>Review the DNS traffic originating from your network in real time, and detect compromised hosts and
+                            applications phoning home</li>
+                        <li>Locally block ads, trackers, malware, spam, and any website whose domain names or IP addresses match
+                            a set of rules you define.</li>
+                        <li>Prevent queries for local zones from being leaked.</li>
+                        <li>Reduce latency by caching resposes and avoiding requesting IPv6 addresses on IPv4-only networks.</li>
+                        <li>Force traffic to use TCP, to route it through TCP-only tunnels or Tor.</li>
+                    </ul>
+                </p>
+            </section>
+
+            <section id="signature-verification" class="anchor">
+                <h2>Signature verification</h2>
+                <p>
+                    Files (source code tarballs, precompiled binaries, list of resolvers) can be verified with the
+                    <a href="https://jedisct1.github.io/minisign/">Minisign</a> tool and the following command:
+                </p>
+                <code>
+$ minisign -VP RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3 -m &lt;file name&gt;
+</code>
+            </section>
+
+        </section>
+        <section id="dnscrypt-server" class="anchor">
+            <section>
+                <h2>Running your own DNSCrypt server</h2>
+
+                <p>If you are running your own private or public recursive DNS server, adding support for the DNSCrypt protocol
+                    can be done by installing <a href="https://github.com/Cofyc/dnscrypt-wrapper">DNSCrypt-Wrapper</a>, the
+                    reference server-side DNSCrypt proxy.
+                </p>
+
+                <p>DNSCrypt-Wrapper can be compiled from the source code. OSX users can also use Homebrew to install it:
+                    <code>brew install dnscrypt-wrapper</code>.
+                </p>
+
+                <p>The proxy is compatible with any DNS resolver software, including Unbound, PowerDNS Recursor and BIND.</p>
+
+                <p>A <a href="https://github.com/jedisct1/dnscrypt-server-docker">Docker image for dnscrypt server</a> is also
+                    available, and is the easiest and fastest way to deploy a DNSSEC-validating, DNSCrypt-enabled caching
+                    DNS server. It includes a pre-configured Unbound server, dnscrypt-wrapper, and all the scripts required
+                    to perform key rotation and supervision.</p>
+
+                <p>Another option is <a href="http://dnsdist.org/">dnsdist</a>, a highly DNS-, DoS- and abuse-aware loadbalancer.
+                    Its goal in life is to route traffic to the best server, delivering top performance to legitimate users
+                    while shunting or blocking abusive traffic.</p>
+
+                <p>dnsdist <a href="https://github.com/PowerDNS/pdns/blob/master/pdns/README-dnsdist.md#dnscrypt">can act as a DNSCrypt server</a>                    when compiled with <code>--enable-dnscrypt</code>.</p>
+            </section>
+        </section>
+
+        <section id="deployment" class="anchor">
+            <h2>Deployment</h2>
+
+            <p>
+                DNSCrypt is typically deployed using a pair of DNS proxies: a client proxy and a server proxy.
+            </p>
+
+            <p>
+                The client side of DNSCrypt is a proxy to which regular DNS clients can connect to. Instead of using your ISP's DNS settings,
+                you can just configure your network settings to use <code>127.0.0.1</code> or whatever IP
+                address and port you configured the DNSCrypt client to listen to. The client proxy translates regular DNS
+                queries into authenticated DNS queries, forwards them to a server running the server DNSCrypt proxy, verifies
+                the responses, and forwards them to the client if they appear to be genuine.
+            </p>
+
+            <p>
+                The server side of DNSCrypt receives DNS queries sent by the client proxy, forwards them to a trusted DNS resolver, and signs
+                the responses it receives before forwarding them to the client proxy.
+            </p>
+
+            <p>
+                The DNSCrypt protocol uses UDP and TCP ports 443, which are less likely to be filtered by routers and ISPs than the standard
+                DNS port.
+            </p>
+
+            <p>
+                The local network is usually the most vulnerable network segment against active attacks such as DNS spoofing. The DNSCrypt
+                server can run on the router, along with a modern DNS resolver. Clients can then run the client code of DNSCrypt,
+                leveraging the router DNS resolver.
+            </p>
+
+            <pre>
     |----- Most vulnerable to attacks ------|          |-- Most vulnerable to modification --|
 
          dnscrypt client               dnscrypt server
@@ -94,16 +353,16 @@ Laptop/workstation/phone/tablet --------> home router --------> ISP --------> th
     |--------- Secured by DNSCrypt ---------| |------------- Secured by DNSSEC --------------|
 </pre>
 
-<p>
-Alternatively, companies, organizations and individuals are running public DNS resolvers supporting the DNSCrypt protocol.
-These can be used as an alternative to running a DNSCrypt server and a DNS resolver on the router.
-</p>
+            <p>
+                Alternatively, companies, organizations and individuals are running public DNS resolvers supporting the DNSCrypt protocol.
+                These can be used as an alternative to running a DNSCrypt server and a DNS resolver on the router.
+            </p>
 
-<p>
-For maximum protection, DNSCrypt client can run on every client device:
-</p>
+            <p>
+                For maximum protection, DNSCrypt client can run on every client device:
+            </p>
 
-<pre>
+            <pre>
     |----- Most vulnerable to attacks ------|            |-- Most vulnerable to modification --|
 
          dnscrypt client                                                                                 dnscrypt server
@@ -114,11 +373,11 @@ Laptop/workstation/phone/tablet --------> home router --------> ISP ----------> 
                                                                      |--- Most vulnerable to logging ---|
 </pre>
 
-<p>
-Or if you totally trust the local network, the DNSCrypt client can run on the router instead:
-</p>
+            <p>
+                Or if you totally trust the local network, the DNSCrypt client can run on the router instead:
+            </p>
 
-<pre>
+            <pre>
     |----- Most vulnerable to attacks ------|            |-- Most vulnerable to modification --|
 
                                         dnscrypt client                                                  dnscrypt server
@@ -129,11 +388,12 @@ Laptop/workstation/phone/tablet --------> home router --------> ISP ----------> 
                                                                      |--- Most vulnerable to logging ---|
 </pre>
 
-<p>
-Finally, you can run your own DNSCrypt server on a remote, trusted network, to get full control over what the resolver is doing and logging:
-</p>
+            <p>
+                Finally, you can run your own DNSCrypt server on a remote, trusted network, to get full control over what the resolver is
+                doing and logging:
+            </p>
 
-<pre>
+            <pre>
     |----- Most vulnerable to attacks ------|            |-- Most vulnerable to modification --|
 
         dnscrypt client                                                                                 dnscrypt server
@@ -143,219 +403,32 @@ Laptop/workstation/phone/tablet --------> home router --------> ISP ----------> 
                                                                               |--- Secured by DNSSEC ---|
 </pre>
 
-<h2>
-<a id="dnscrypt-server" class="anchor" href="#dnscrypt-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt server</h2>
+            <p>Please note that DNSCrypt is not a replacement for a VPN, as it only authenticates DNS traffic, and doesn't prevent
+                third-party DNS resolvers from logging your activity. By design, the TLS protocol, as used in HTTPS and HTTP/2,
+                leaks websites host names in plain text, so DNSCrypt is not enough to hide this information.</p>
 
-<p>If you are running your own private or public recursive DNS server, adding support for the DNSCrypt protocol requires installing <a href="https://github.com/Cofyc/dnscrypt-wrapper">DNSCrypt-Wrapper</a>, the server-side DNSCrypt proxy.
-</p>
+        </section>
 
-<p>DNSCrypt-Wrapper can be compiled from the source code. OSX users can also use Homebrew to install it: <code>brew install dnscrypt-wrapper</code>.
-</p>
+        <section>
+            <h2>Using DNSCrypt in combination with a DNS cache</h2>
 
-<p>The proxy is compatible with any DNS resolver software, including Unbound, PowerDNS Recursor and BIND.</p>
-
-<p>A <a href="https://github.com/jedisct1/dnscrypt-server-docker">Docker image for dnscrypt server</a> is also available, and is the easiest and fastest way to deploy a DNSSEC-validating, DNSCrypt-enabled caching DNS server.</p>
-
-<p>Another option is <a href="http://dnsdist.org/">dnsdist</a>, a highly DNS-, DoS- and abuse-aware loadbalancer. Its goal in life is to route traffic to the best server, delivering top performance to legitimate users while shunting or blocking abusive traffic.</p>
-
-<p>dnsdist <a href="https://github.com/PowerDNS/pdns/blob/master/pdns/README-dnsdist.md#dnscrypt">can act as a DNSCrypt server</a> when compiled with <code>--enable-dnscrypt</code>.</p>
-
-<h2>
-<a id="dnscrypt-windows" class="anchor" href="#dnscrypt-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt for Windows</h2>
-
-<p>The dnscrypt-proxy application works on Windows, from Windows XP to Windows 10. It runs as a service, and does not provide a graphical user interface; its installation and its configuration require typing commands.
-This remains the best option for advanced users, especially since it supports the same plugins as other platforms.</p>
-
-<p>
-See <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/README-WINDOWS.markdown" target="_blank" rel="noopener">using DNSCrypt on Windows</a> to get started with the command-line tool.
-</p>
-
-<p>
-In addition, the following user interfaces are available:
-<ul>
-    <li><a href="https://simplednscrypt.org/">Simple DNSCrypt</a>: an all-in-one, standalone client - using DNSCrypt on Windows has never been so simple.</li>
-    <li><a href="https://github.com/Noxwizard/dnscrypt-winclient">DNSCrypt WinClient</a>: the original DNSCrypt user interface for Windows.</li>
-</ul>
-</p>
-
-<p>
-Recommended guides for getting started with the DNSCrypt client on
-Windows:
-<ul>
-  <li><a href="https://dominustemporis.com/2014/05/dnscrypt-on-windows-update/" target="_blank" rel="noopener">DNSCrypt On Windows</a>
-  <li><a href="http://utekno.com/cara-menggunakan-dnscrypt-windows-11451" target="_blank" rel="noopener">Cara menggunakan DNSCrypt di Windows</a> (Indonesian)</li>
-</ul>
-</p>
-
-<p>
-<strong>Important:</strong>
-We are aware of fake packages pretending to be DNSCrypt Windows clients, that actually contain malware/PUP.
-Do not download anything that pretends to be a DNSCrypt client from torrents, links in Youtube videos or unofficial download locations.
-</p>
-<p>
-Files (source code tarballs, precompiled binaries, list of resolvers)
-can be verified with the <a href="https://jedisct1.github.io/minisign/">Minisign</a> tool and
-the following command:
-</p>
-<code>
-$ minisign -VP RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3 -m &lt;file name&gt;
-</code>
-
-<h2>
-<a id="dnscrypt-osx" class="anchor" href="#dnscrypt-osx" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt for OSX</h2>
-<p>
-<a href="https://github.com/alterstep/dnscrypt-osxclient">DNSCrypt-OSXClient</a> is an easy-to-use, full-featured, self-contained graphical user interface for OSX.
-</p>
-<p>
-Alternatively, advanced users familiar with the command-line can use <a href="http://brew.sh/">Homebrew</a> to install the software:
-</p>
-<code>
-brew install dnscrypt-proxy --with-plugins
-</code>
-
-<h2>
-<a id="dnscrypt-ios" class="anchor" href="#dnscrypt-ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt for iOS</h2>
-<p>
-For jailbroken iOS device, <a href="https://modmyi.com/cydia/com.guizmo.dns">GuizmoDNS</a> is an app to change DNS settings (for 3G/4G and Wifi), with support for DNSCrypt.
-It is available on Cydia. The command-line <code>dnscrypt-proxy</code> client is also available on Cydia.
-</p>
-<p>
-However, the version on Cydia might not be the latest one. Official pre-compiled binaries of the latest version are available on the <a href="https://download.dnscrypt.org/dnscrypt-proxy/" target="_blank" rel="noopener">DNSCrypt download</a> page.
-</p>
-<p>
-The DNSCrypt source code can also be compiled out of the box for iOS devices, using the provided <code>dist-build/ios.sh</code> script.
-</p>
-<p>
-With the introduction of the Network Extension Framework in iOS 9, it may be possible to write a DNSCrypt client app that would run everywhere, without requiring a jailbroken device. Plese get in touch with us if you want to sponsor this effort.
-</p>
-
-<h2>
-<a id="dnscrypt-android" class="anchor" href="#dnscrypt-android" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt for Android</h2>
-
-<p>
-Running DNSCrypt on Android currently requires a rooted device. If you don't know how to root an Android device, the <a href="http://forum.xda-developers.com/" target="_blank" rel="noopener">xda-developers</a> forum is a good place to start.
-</p>
-<ul>
-<li>Start by downloading a precompiled <a href="https://download.dnscrypt.org/dnscrypt-proxy/" target="_blank" rel="noopener">dnscrypt-proxy package for Android</a>.</li>
-<li>If you want to change the DNSCrypt resolver to use, unzip the archive, edit the <code>RESOLVER_NAME</code> variable in <code>system/etc/init.d/99dnscrypt</code>. Keep the content as a ZIP file, with the original structure.</li>
-<li>Upload the ZIP file to the device, into <code>/sdcard</code> or any location you can write to.</li>
-<li>Make sure that you have a custom recovery such as TWRP or CWM. The easiest way is to download and install <strong>TWRP Manager</strong> from the Google Play Store. Reboot in recovery mode and install the ZIP file.</li>
-<li>Reboot.</li>
-<li>Dowload and install <strong>Universal Init.d</strong> from the Google Play Store. Follow the instructions until you see <code>Your Kernel Has init.d Support</code>.</li>
-<li>The DNSCrypt proxy should be running at this point, but your device may still use the previous DNS settings. Download and install <strong>DNS Changer</strong> fron the Google Play Store. In order to actually use DNSCrypt, enter <code>127.0.0.1</code> as the primary DNS resolver. In order to stop using DNSCrypt, leave this field empty.</li>
-<li>DNS changes may not be visible immediately. Android has its own DNS cache, and web browsers such as Chrome have another layer of DNS caching. In order to clear Chrome's DNS cache, enter <code>chrome://net-internals/#dns</code> in the URL bar, and press <strong>Clear host cache</strong>.
-</ul>
-Relevant discussions:
-<ul>
-<li><a href="https://github.com/jedisct1/dnscrypt-proxy/issues/98#issuecomment-62636551" target="_blank" rel="noopener">Starting the daemon on Android</a></li>
-<li><a href="http://forum.xda-developers.com/showthread.php?t=2793092" target="_blank" rel="noopener">How to install DNSCrypt on Android</a>
-</ul>
-</p>
-<p>
-The dnscrypt-proxy source code can be cross-compiled for Android using the provided <code>dist-build/android*.sh</code> scripts.</a>
-</p>
-<p>
-It might also soon be part of the <a href="https://review.cyanogenmod.org/#/q/status:open+branch:cm-12.1+topic:dnscrypt" target="_blank" rel="noopener">Cyanogen Mod</a>.
-</p>
-
-<h2>
-<a id="dnscrypt-routers" class="anchor" href="#dnscrypt-routers" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNSCrypt for routers</h2>
-<p>
-Modern open router firmwares such as <a href="http://tomato.groov.pl/" target="_blank" rel="noopener">Tomato Shibby</a> and other Tomato variants include a DNSCrypt client out-of-the box.
-</p>
-<p>
-The dnscrypt-proxy client is also available on OpenWRT which has a wiki page on using <a href="https://wiki.openwrt.org/inbox/dnscrypt" target="_blank" rel="noopener">DNSCrypt on OpenWRT</a>.
-</p>
-<p>
-dnscrypt-proxy can also be found in <a href="https://github.com/Entware/entware" target="_blank" rel="noopener">Entware</a>.
-</p>
-<p>
-It can also be compiled for any Linux-based target, running an Intel, Mips or ARM CPU.
-</p>
-<p><a href="https://github.com/chengr28/Pcap_DNSProxy">Pcap_DNSProxy</a> is a very fast DNS proxy. It includes a DNSCrypt client implementation.
-</p>
-<p>
-But the reference client DNSCrypt implementation is <a href="https://download.dnscrypt.org/dnscrypt-proxy/">dnscrypt-proxy</a>.
-</p>
-<p>
-Packages are available for many modern Linux distributions and for common BSD systems.
-</p>
-<p>
-For other systems, the <a href="https://download.dnscrypt.org/dnscrypt-proxy/">dnscrypt-proxy source code</a> can be compiled. The only dependency for it to compile is <a href="https://download.libsodium.org/doc/">libsodium</a> for which most distributions provide pre-built packages.
-The proxy will be installed as `/usr/local/sbin/dnscrypt-proxy` by default.
-</p>
-<p>
-Command-line switches are documented in the dnscrypt-proxy(8) man page.
-Having a dedicated system user, with no privileges and with an empty home directory, is highly recommended. For extra security, DNSCrypt will chroot() to this user's home directory and drop root privileges for this user's uid as soon as possible.
-</p>
-<p>
-Most users just want to start the client proxy like this:
-</p>
-<pre>
-sudo dnscrypt-proxy --resolver-name=&lt;resolver name&gt;
-</pre>
-<p>
-Or to run it as a background process:
-</p>
-<pre>
-sudo dnscrypt-proxy --resolver-name=&lt;resolver name&gt; --daemonize
-</pre>
-<p>
-Replace <code>&lt;resolver name&gt;</code> with the name of the resolver you want to use (the first column in the <a href="#public-resolvers">list of public resolvers</a>).
-For example:
-<code>
-sudo dnscrypt-proxy --resolver-name=dnscrypt.org-fr --daemonize
-</code>
-</p>
-<p>
-The proxy will accept incoming requests on 127.0.0.1 - port 53, add an authentication tag, forward them to the resolver, and validate each answer before passing it to the client.
-</p>
-<p>
-Given such a setup, in order to actually start using DNSCrypt, you need to configure your DNS settings to use 127.0.0.1 as a name server. Done! You are now using DNSCrypt.
-</p>
-<p>
-Other common command-line switches include:
-<ul>
-    <li>--daemonize in order to run the server as a background process.</li>
-    <li>--ephemeral-keys: improve privacy by using an ephemeral public key for each query. Recommended if you are not using your own server, any the remote server is logging your activity, and your client IP address is frequently changing. Not enabled by default because it may be slow, especially on non-Intel CPUs.</li>
-    <li>--local-address=&lt;ip&gt;[:port] in order to locally bind a different IP address than 127.0.0.1</li>
-    <li>--logfile=&lt;file&gt; in order to write log data to a dedicated file. By default, logs are sent to stdout if the server is running in foreground, and to syslog if it is running in background.</li>
-    <li>--max-active-requests=&lt;count&gt; to set the maximum number of active requests. The default value is 250.</li>
-    <li>--pidfile=&lt;file&gt; in order to store the PID number to a file.</li>
-    <li>--resolvers-list=&lt;file&gt; to specity the path to the CSV file containing the list of available resolvers, and the parameters to use them.</li>
-    <li>--test in order to check that the server-side proxy is properly configured and that a valid certificate can be used. This is useful for monitoring your own dnscrypt proxy. See the man page for more information.</li>
-</ul>
-</p>
-<p>
-Multiple dnscrypt-proxy instances can run simultaneously, with different configurations.
-</p>
-
-<h3>DNSCrypt-Loader</h3>
-<p>
-    <a href="https://github.com/gortcodex/dnscrypt-loader" target="_blank" rel="noopener">DNSCrypt-Loader</a> is a console-based tool to manage the DNSCrypt proxy client on Linux.
-</p>
-<p>
-    It requires a minimal amount of dependencies, has an always up-to-date list of resolvers, and can automatically change the DNS settings to use DNSCrypt.
-</p>
-
-<h2>
-<a id="dns-cache" class="anchor" href="#dns-cache" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using DNSCrypt in combination with a DNS cache</h2>
-<p>
-The DNSCrypt client proxy is not a DNS cache. This means that incoming queries will not be cached and every single query will require a round-trip to the upstream resolver.
-</p>
-<p>
-For optimal performance, the recommended way of running DNSCrypt is to run it as a forwarder for a local DNS cache, such as unbound or powerdns-recursor.
-</p>
-<p>
-A caching resolver can also provide high availability, by forwarding queries to multiple upstream DNSCrypt client proxies, configured with different providers.
-</p>
-<p>
-dnscrypt-proxy instances and the caching resolver can safely run on the same machine as long as they are listening to different IP addresses or different ports.
-</p>
-<p>
-If your DNS cache is unbound, all you need is to edit the unbound.conf file and add the following lines at the end of the server section:
-</p>
-<pre>
+            <p>
+                For optimal performance, the recommended way of running DNSCrypt is to run it as a forwarder for a local DNS cache, such
+                as Unbound or PowerDNS-Recursor.
+            </p>
+            <p>
+                A caching resolver can provide high availability, by forwarding queries to multiple upstream DNSCrypt client proxies, configured
+                with different providers.
+            </p>
+            <p>
+                dnscrypt-proxy instances and the caching resolver can safely run on the same machine as long as they are listening to different
+                IP addresses or different ports.
+            </p>
+            <p>
+                If your DNS cache is Unbound, all you need is to edit the unbound.conf file and add the following lines at the end of the
+                server section:
+            </p>
+            <pre>
 do-not-query-localhost: no
 
 forward-zone:
@@ -363,138 +436,46 @@ forward-zone:
   forward-addr: 127.0.0.1@40
   forward-addr: 127.0.0.1@41
 </pre>
-<p>
-The first line is not required if you are using different IP addresses instead of different ports.
-The <code>forward-addr</code> lines indicate addresses and ports of dnscrypt clients to use as upstream resolvers.
-</p>
-<p>
-Then, start the client proxies, listening to local ports (40 and 41, using dnscrypt.org-fr and dnscrypt.eu-nl public resolvers in this example):
-</p>
-<pre>
-# dnscrypt-proxy -R dnscrypt.org-fr --local-address=127.0.0.1:40 --daemonize
-# dnscrypt-proxy -R dnscrypt.eu-nl --local-address=127.0.0.1:41 --daemonize
-</pre>
-<p>
-Pay attention to the fact that some resolvers do not support the DNS security extensions (DNSSEC).
-</p>
-<p>
-If Unbound is configured to perform DNSSEC validation in combination with an upstream server that does not support DNSSEC, queries will fail.
-Either use only DNSCrypt resolvers with support for DNSSEC, or disable DNSSEC support in Unbound by commenting out the <code>auto-trust-anchor-file</code> line in its configuration.
-</p>
-<p>
-A local caching resolver can also be extremely useful to forward queries for CDNs or internal domains to a specific resolver.
-</p>
-<h2>
-<a id="ipv6" class="anchor" href="#ipv6" aria-hidden="true"><span class="octicon octicon-link"></span></a>IPv6</h2>
-<p>
-IPv6 is fully supported. IPv6 addresses with a port number should be specified as [ip]:port
-</p>
-<pre>
-# dnscrypt-proxy --local-address='[::1]:40' --daemonize
-</pre>
+            <p>
+                The first line is not required if you are using different IP addresses instead of different ports. The <code>forward-addr</code>                lines indicate addresses and ports of dnscrypt clients to use as upstream resolvers.
+            </p>
+            <p>
+                Then, start the two client proxies, listening to different local ports (40 and 41 in this example).
+            </p>
+            <p>
+                Pay attention to the fact that some resolvers do not support the DNS security extensions (DNSSEC).
+            </p>
+            <p>
+                If Unbound is configured to perform DNSSEC validation in combination with an upstream server that does not support DNSSEC,
+                queries will fail. Either use only DNSCrypt resolvers with support for DNSSEC, or disable DNSSEC support
+                in Unbound by commenting out the <code>auto-trust-anchor-file</code> line in its configuration.
+            </p>
+            <p>
+                A local caching resolver can also be extremely useful to forward queries for CDNs or internal domains to a specific resolver.
+            </p>
+        </section>
 
-<h2>
-<a id="firewall" class="anchor" href="#firewall" aria-hidden="true"><span class="octicon octicon-link"></span></a>Firewall rules</h2>
-<p>
-The default port used by the DNSCrypt protocol is 443. Both TCP and UDP should be allowed.
-</p>
-<p>
-Some public resolvers use a different port, though.
-</p>
-<p>
-When running your own server, you can pick any port.
-</p>
+        <section id="developers" class="anchor">
+            <h2>DNSCrypt for developers</h2>
+            <p>
+                The <a href="https://github.com/jedisct1/dnscrypt-proxy/blob/master/DNSCRYPT-V2-PROTOCOL.txt" target="_blank"
+                    rel="noopener">protocol specification</a> is available and can be implemented free of charge in any product.
+            </p>
+        </section>
 
-<h2>
-<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h2>
-<p>
-dnscrypt-proxy can be extended with plugins.
-</p>
-<p>
-Plugins are a very powerful mechanism to locally filter and rewrite queries and responses before forwarding them.
-</p>
-<p>
-Plugins are enabled by adding <code>--plugin=...</code> switches to the startup command line. Multiple plugins can be enabled at the same time.
-</p>
+        <script>
+            (function () {
+                var xhr;
+                try {
+                    xhr = new ActiveXObject('Microsoft.XMLHTTP');
+                } catch (e) {
+                    xhr = new XMLHttpRequest();
+                }
+                xhr.open('HEAD', 'https://resolver.dnscrypt.org');
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.send(null);
+            })();
+        </script>
+</body>
 
-<h3>AAAA blocking</h3>
-<p>
-If your network doesn't support IPv6, chances are that your applications are still constantly trying to resolve IPv6 addresses, causing unnecessary slowdowns.
-</p>
-<p>
-This plugin causes the proxy to immediately reply to IPv6 requests, without having to send a useless request to upstream resolvers, and having to wait for a response.
-</p>
-<p>
-Usage:
-</p>
-<pre>
-# dnscrypt-proxy ... --plugin=example-ldns-aaaa-blocking.la
-</pre>
-
-<h3>IP/domain names blocking</h3>
-<p>
-Want to filter ads, malware, sensitive or inapropriate web sites and domain names?
-</p>
-<p>
-This plugin can block lists of IP addresses and names matching a list of patterns. The list of rules remains private, and the filtering process directly happens on your own network.
-</p>
-<p>
-In order to filter IP addresses, the list of IPs has to be put into a text file, with one IP address per line.
-The plugin can then be enabled with:
-</p>
-<pre>
-# dnscrypt-proxy ... --plugin=example-ldns-blocking.la,--ips=&lt;ips file name&gt;
-</pre>
-<p>
-Comments starting with <code>#</code> are allowed.
-</p>
-<p>
-Lists of domain names can also be blocked as well. Put the list into a text file, one domain per line, and enable the plugin with:
-</p>
-<pre>
-# dnscrypt-proxy ... --plugin=example-ldns-blocking.la,--domains=&lt;domains file name&gt;
-</pre>
-<p>
-Domains can include wildcards (<code>*</code>) in order to match patterns. For example <code>*sex*</code> will match any name that contains the <code>sex</code> substring, and <code>ads.*</code> will match anything starting with <code>ads.</code>
-</p>
-<p>
-Comments starting with <code>#</code> are also allowed.
-</p>
-<p>
-The Internet has plenty of free feeds of IP addresses and domain names used for malware, phishing and spam that you can use with this plugin.
-</p>
-<p>
-Lists of IPs and domains can be used simultaneously:
-</p>
-<pre>
-# dnscrypt-proxy ... --plugin=example-ldns-blocking.la,--domains=&lt;domains file name&gt;,--ips=&lt;ips file name&gt;
-</pre>
-
-<h3>Logging plugin</h3>
-<p>
-This plugin logs the DNS queries received by the proxy. The logs are stored in a local file.
-</p>
-<pre>
-# dnscrypt-proxy ... --plugins=example-logging.la,&lt;log file name&gt;
-</pre>
-
-      <footer class="site-footer">
-        <span class="site-footer-credits">This page was initially generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-    <script>
-    (function() {
-        var xhr;
-        try {
-            xhr = new ActiveXObject('Microsoft.XMLHTTP');
-        } catch (e) {
-            xhr = new XMLHttpRequest();
-        }
-        xhr.open('HEAD', 'https://resolver.dnscrypt.org');
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.send(null);
-    })();
-    </script>
-  </body>
 </html>
