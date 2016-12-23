@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="robots" content="noindex" />
+		<meta name="description" content=""/>
+		<meta name="author" content=""/>
+		<style type="text/css">
+			@font-face {
+				font-family: 'Roboto Condensed';
+				font-style: normal;
+				font-weight: 300;
+				src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(RobotoCondensed-Light.woff) format('woff');
+			}
+			html, body, pre {
+				margin: 0;
+			}
+			html, body, pre, input {
+				font-size: 1em;
+				font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+			}
+			table, table td, table th{
+				border: 1px solid #000000;
+				border-collapse: collapse;
+			}
+			section {
+				margin: 0.1em 0.1em 0.1em 0.1em;
+			}
+			table td, table th {
+				padding-left: 0.5em;
+				padding-right: 0.5em;
+			}
+			table th {
+				background-color: #CCFFCC;
+				font-size: 0.9em;
+			}
+			table td {
+				font-size: 0.8em;
+			}
+			table td.h {
+				font-weight: bold;
+				background-color: #CCFFCC;
+			}
+			header {
+				padding-bottom: 0.2em;
+			}
+			button.toggle {
+				font-size: 0.6em;
+			}
+			button, label {
+				border: 1px solid #000000;
+				background-color: #FFCCFF;
+				text-decoration: none;
+			}
+			.status {
+				background-color: #FFFFCC;
+				color:#6666FF;
+			}
+			.filter {
+				display: inline;
+				font-size: 0.6em;
+			}
+		</style>
+		<script type="text/javascript" src="papaparse.min.js"></script>
+		<script type="text/javascript">
+			var resolvers = null;
+			var fields = null;
+			function onError(error) {
+				document.getElementById("status").innerHTML = "[[ failed to download dnscrypt-resolvers.csv! make sure to allow xhr requests from this domain to raw.githubusercontent.com ]]";
+			}
+			function onSuccess(results) {
+				document.getElementById("status").innerHTML = "[[ successfully downloaded dnscrypt-resolvers.csv! ]]";
+				resolvers = results.data;
+				fields = results.meta.fields;
+				createTable();
+			}
+			function getResolvers() {
+				document.getElementById("status").innerHTML = "[[ downloading dnscrypt-resolvers.csv from github... ]]";
+				var parse = Papa.parse("https://raw.githubusercontent.com/jedisct1/dnscrypt-proxy/master/dnscrypt-resolvers.csv?t=" + Math.random(), {download:true,dynamicTyping:true,skipEmptyLines:true,delimiter:",", header:true, fastMode:false, error:onError, complete:onSuccess});
+			}
+			function clicc(num) {
+				var elem = null;
+				var inputs = document.getElementsByName("filter");
+				for (var i=0; i<inputs.length; i++) {
+					if (inputs[i].value == num) {
+						elem = inputs[i];
+					}
+				}
+				var elems = document.getElementsByClassName(num);
+				for (var i=0; i<elems.length; i++) {
+					if (elem.checked) {
+						elems[i].style.display = "";
+					} else {
+						elems[i].style.display = "none";
+					}
+				}
+			}
+			function createTable() {
+				var table = document.getElementById("table");
+				var tbody = document.createElement("tbody");
+				table.appendChild(tbody);
+				var tr = document.createElement('tr');
+				var filter = document.getElementById("filter");
+				for (var j=0; j<fields.length; j++) {
+					var label = document.createElement("label");
+					label.for = "filter";
+					label.innerHTML = fields[j];
+					var input = document.createElement("input");
+					input.type = "checkbox";
+					input.name = "filter";
+					input.value = j;
+					input.checked = true;
+					input.onclick = (function() { var k = j; return function () { clicc(k+''); } })();
+					label.appendChild(input);
+					filter.appendChild(label);
+					filter.appendChild(document.createTextNode("   "));
+					var th = document.createElement('th');
+					th.appendChild(document.createTextNode(fields[j]));
+					th.className = j;
+					tr.appendChild(th);
+				}
+				tbody.appendChild(tr);
+				for (var i=0; i<resolvers.length; i++) {
+					var row = resolvers[i];
+					var tr = document.createElement('tr');
+					for (var j=0; j<fields.length; j++) {
+						var td = document.createElement('td');
+						td.appendChild(document.createTextNode(row[fields[j]]));
+						if (j == 0) {
+							td.className = j+" h";
+						}
+						else {
+							td.className = j;
+						}
+						tr.appendChild(td);
+					}
+					tbody.appendChild(tr);
+				}
+			}
+		</script>
+		<title>dnscrypt resolvers</title>
+	</head>
+	<body>
+	</body>
+		<section>
+			<header>
+				Status: <span id="status" class="status">[[ This page requires javascript to be enabled. ]]</span><br/>Filter: <div id="filter" class="filter"></div>
+			</header>
+			<table id="table">
+			</table>
+		</section>
+		<script type="text/javascript">
+			window.onload = getResolvers();
+		</script>
+	</body>
+</html>
