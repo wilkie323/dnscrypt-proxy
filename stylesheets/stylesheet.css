@@ -274,6 +274,12 @@ section .anchor {
   text-align: center;
 }
 
+.announce {
+  text-align: center;
+  color: #800;
+  background-color: #eee;
+}
+
 @media screen and (min-width: 64em) {
   .site-footer {
     font-size: 1rem; } }
